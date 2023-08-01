@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Create a new planning{% endblock %}
+
+{% block body %}
+
+    
+    {% if edit %}
+
+        <h1>Edit a Planning</h1>
+        
+    {% else %}
+        
+        <h1>Create a new planning</h1>
+    
+    {% endif %}
+    
+    {{ form_start(formAddPlanning) }}
+        
+    
+        {{ form_row(formAddPlanning.nbrsOfDays) }}
+        
+        
+        <div class="row">
+            
+            <div class="col-sm">
+                
+                {{ form_row(formAddPlanning.session) }}
+                
+            </div>
+            
+            <div class="col-sm">
+
+                {{ form_row(formAddPlanning.module) }}
+
+            </div>
+            
+        </div>
+
+        {{ form_row(formAddPlanning.validate) }}
+
+    
+    {{ form_end(formAddPlanning) }}
+
+
+{% endblock %}

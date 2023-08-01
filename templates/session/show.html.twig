@@ -1,0 +1,84 @@
+
+{% extends 'base.html.twig' %} 
+
+{% block title %}Infos Session{% endblock %}
+
+{% block body %}
+
+    <h1>{{ session }}</h1>
+
+    <p>
+        {# | date ("") pour modifier le format date #}
+        Date Start : {{ session.dateStart | date("d-m-Y") }} // Date End : {{ session.dateEnd | date("d-m-Y") }}
+    </p>
+
+    <h2>Modules</h2>
+
+    {% for planning in session.plannings %}
+
+        {{ planning.module.name }} // {{ planning.nbrsOfDays }} days. <a class="btn btn-secondary" href="{{ path('edit_planning', {'id': planning.id}) }}">Modify</a>
+        <a class="btn btn-danger" href="{{ path('delete_planning', {'id': planning.id}) }}">Delete</a> <br><br>
+
+    {% endfor %}
+
+
+    <h3>List of registered Interns  :</h3>
+
+
+    {% if session.interns |  length > 0 %}
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Interns</th>
+                </tr>
+            </thead>
+
+            <tbody>
+    
+                {# Affichage de tout les stagiaires inscris à cette session #}
+                
+                {% for intern in session.interns %}
+    
+                    <tr>
+    
+                        <th><a href="{{ path('show_intern', {'id':intern.id})}}">{{ intern }}</a></th> <br>
+    
+                    </tr>
+                
+                {% endfor %}
+                
+            </tbody>
+
+        </table>
+
+    {% else %}
+        
+        <p>There is no registered interns</p>
+
+    {% endif %}
+
+    <label for=interns>Add a Registered Interns</label>
+    <select name="interns" id="intern-select">
+
+        <option value="">Select a registered intern</option>
+        
+        {% for intern in interns %}
+        
+            <option value="{{ intern.id }}">
+                
+                {{ intern }}
+
+            </option>
+
+    
+        {% endfor %}
+
+
+    </select>
+
+
+    <a class="btn btn-primary" href="{{ path('delete_session', {'id': session.id}) }}">Add an Intern</a> <br>
+
+{% endblock %}

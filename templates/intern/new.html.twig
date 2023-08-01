@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Add a new Intern{% endblock %}
+
+{% block body %}
+
+    
+    {% if edit %}
+
+        <h1>Edit an Intern</h1>
+        
+    {% else %}
+        
+        <h1>Add a new Intern</h1>
+    
+    {% endif %}
+    
+    {{ form_start(formAddIntern) }}
+    
+        <div class="row">
+
+            <div class="col-sm">
+                
+                {{ form_row(formAddIntern.lastName) }}
+                {{ form_row(formAddIntern.firstName) }}
+
+            </div>
+            
+            {{ form_row(formAddIntern.gender) }}   
+            {{ form_row(formAddIntern.dateOfBirth) }}
+            {{ form_row(formAddIntern.townOfResidence) }}
+
+
+            <div class="col-sm">
+
+                {{ form_row(formAddIntern.email) }}
+                {{ form_row(formAddIntern.phoneNbr) }}
+                
+            </div>
+            
+
+        </div>
+
+
+        {{ form_row(formAddIntern.sessions) }}
+        {{ form_row(formAddIntern.valider) }}
+
+    
+    {{ form_end(formAddIntern) }}
+
+
+{% endblock %}

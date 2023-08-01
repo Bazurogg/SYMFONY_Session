@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Sessions List{% endblock %}
+
+{% block body %}
+
+    <h1>List of all Sessions</h1>
+
+    {% for session in sessions %}
+    
+        <div class="session-container">
+            
+            <a href="{{ path('show_session', {'id': session.id}) }}">{{ session }} // 
+            Starting : {{ session.dateStart | date("d-m-Y") }} - 
+            Ending : {{ session.dateEnd | date("d-m-Y") }}</a>
+            <a class="btn btn-secondary" href="{{ path('edit_session', {'id': session.id}) }}">Modify</a>
+            <a class="btn btn-danger" href="{{ path('delete_session', {'id': session.id}) }}">Delete</a> <br>
+
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

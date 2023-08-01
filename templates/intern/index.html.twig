@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Interns List{% endblock %}
+
+{% block body %}
+
+    <h1>List of all Interns</h1>
+
+    {% for intern in interns %}
+    
+        <div class="intern-container">
+            
+            {{ intern }} //
+            {{ intern.phoneNbr}} //
+            {{ intern.email}}
+            <a class="btn btn-secondary" href="{{ path('edit_intern', {'id': intern.id}) }}">Modify</a>
+            <a class="btn btn-danger" href="{{ path('delete_intern', {'id': intern.id}) }}">Delete</a> <br>
+
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}
+
